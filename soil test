@@ -1,0 +1,4 @@
+This project focuses on developing a web-based interface for soil test analysis using HTML. The goal is to create a simple and user-friendly platform where users can input soil test data such as pH level, moisture 
+content, nitrogen, phosphorus, and potassium values. The interface helps farmers, gardeners, and agricultural experts easily understand soil health and make informed decisions for crop cultivation.
+By using basic web technologies like HTML, CSS, and JavaScript, the project presents the data in a clear, organized manner and can also suggest suitable crops or fertilizers based on the test results. 
+This digital solution promotes efficient farming practices and supports sustainable agriculture.
