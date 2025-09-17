@@ -1,0 +1,95 @@
+# soil-test-analysis
+to check the soil wheather it is suitable for plant breeds
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soil Test Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      color: green;
+    }
+    label {
+      font-weight: bold;
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e0ffe0;
+      border-left: 5px solid green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌾 Soil Test Analyzer</h1>
+  <p>This tool helps you understand your soil’s fertility and recommends suitable crops or trees.</p>
+
+  <form id="soilForm">
+    <label for="ph">Soil pH (e.g. 6.5):</label><br>
+    <input type="number" step="0.1" id="ph" required><br>
+
+    <label for="nitrogen">Nitrogen (Low/Medium/High):</label><br>
+    <input type="text" id="nitrogen" required><br>
+
+    <label for="phosphorus">Phosphorus (Low/Medium/High):</label><br>
+    <input type="text" id="phosphorus" required><br>
+
+    <label for="potassium">Potassium (Low/Medium/High):</label><br>
+    <input type="text" id="potassium" required><br>
+
+    <button type="submit">Analyze</button>
+  </form>
+
+  <div class="result" id="result" style="display:none;"></div>
+
+  <script>
+    document.getElementById('soilForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const ph = parseFloat(document.getElementById('ph').value);
+      const nitrogen = document.getElementById('nitrogen').value.toLowerCase();
+      const phosphorus = document.getElementById('phosphorus').value.toLowerCase();
+      const potassium = document.getElementById('potassium').value.toLowerCase();
+
+      let recommendation = '';
+
+      // Simple rules for demo purpose
+      if (ph >= 6 && ph <= 7 && nitrogen === 'high' && phosphorus === 'medium') {
+        recommendation = '🌻 Your soil is fertile! You can grow: Sunflower, Tomato, Maize.';
+      } else if (ph < 6 && nitrogen === 'low') {
+        recommendation = '🌱 Add organic compost. Good for: Potatoes, Carrots, Beans.';
+      } else if (ph > 7 && potassium === 'high') {
+        recommendation = '🌳 Suitable for trees like: Neem, Mango, Coconut.';
+      } else {
+        recommendation = '🧪 Soil needs improvement. Consider soil treatment or rotation crops.';
+      }
+
+      document.getElementById('result').innerText = recommendation;
+      document.getElementById('result').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
