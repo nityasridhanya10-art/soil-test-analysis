@@ -1,94 +1,132 @@
 # soil-test-analysis
 to check the soil wheather it is suitable for plant breeds
 
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Soil Test Analysis</title>
+  <title>Soil Test Analyzer</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      padding: 20px;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f9ff, #cbebff);
+      margin: 0;
+      padding: 0;
     }
-    h1 {
-      color: green;
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
     }
     label {
+      display: block;
+      margin-top: 1rem;
       font-weight: bold;
     }
     input {
-      margin-bottom: 10px;
-      padding: 8px;
       width: 100%;
-      max-width: 300px;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
     button {
-      padding: 10px 20px;
-      background: green;
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #2ecc71;
       color: white;
+      font-size: 1rem;
       border: none;
+      border-radius: 8px;
       cursor: pointer;
     }
+    button:hover {
+      background-color: #27ae60;
+    }
     .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #e0ffe0;
-      border-left: 5px solid green;
+      margin-top: 2rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #ecf0f1;
+      color: #2c3e50;
     }
   </style>
 </head>
 <body>
 
-  <h1>🌾 Soil Test Analyzer</h1>
-  <p>This tool helps you understand your soil’s fertility and recommends suitable crops or trees.</p>
+  <div class="container">
+    <h2>Soil Test Analyzer 🌱</h2>
+    <label for="ph">Soil pH Level (1–14):</label>
+    <input type="number" id="ph" min="1" max="14" step="0.1">
 
-  <form id="soilForm">
-    <label for="ph">Soil pH (e.g. 6.5):</label><br>
-    <input type="number" step="0.1" id="ph" required><br>
+    <label for="moisture">Moisture (%) :</label>
+    <input type="number" id="moisture" min="0" max="100" step="0.1">
 
-    <label for="nitrogen">Nitrogen (Low/Medium/High):</label><br>
-    <input type="text" id="nitrogen" required><br>
+    <label for="nitrogen">Nitrogen Level (ppm):</label>
+    <input type="number" id="nitrogen" min="0">
 
-    <label for="phosphorus">Phosphorus (Low/Medium/High):</label><br>
-    <input type="text" id="phosphorus" required><br>
+    <button onclick="analyzeSoil()">Analyze Soil</button>
 
-    <label for="potassium">Potassium (Low/Medium/High):</label><br>
-    <input type="text" id="potassium" required><br>
-
-    <button type="submit">Analyze</button>
-  </form>
-
-  <div class="result" id="result" style="display:none;"></div>
+    <div class="result" id="result">
+      <!-- Result will show here -->
+    </div>
+  </div>
 
   <script>
-    document.getElementById('soilForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
+    function analyzeSoil() {
       const ph = parseFloat(document.getElementById('ph').value);
-      const nitrogen = document.getElementById('nitrogen').value.toLowerCase();
-      const phosphorus = document.getElementById('phosphorus').value.toLowerCase();
-      const potassium = document.getElementById('potassium').value.toLowerCase();
+      const moisture = parseFloat(document.getElementById('moisture').value);
+      const nitrogen = parseFloat(document.getElementById('nitrogen').value);
+      const resultDiv = document.getElementById('result');
 
-      let recommendation = '';
-
-      // Simple rules for demo purpose
-      if (ph >= 6 && ph <= 7 && nitrogen === 'high' && phosphorus === 'medium') {
-        recommendation = '🌻 Your soil is fertile! You can grow: Sunflower, Tomato, Maize.';
-      } else if (ph < 6 && nitrogen === 'low') {
-        recommendation = '🌱 Add organic compost. Good for: Potatoes, Carrots, Beans.';
-      } else if (ph > 7 && potassium === 'high') {
-        recommendation = '🌳 Suitable for trees like: Neem, Mango, Coconut.';
-      } else {
-        recommendation = '🧪 Soil needs improvement. Consider soil treatment or rotation crops.';
+      if (isNaN(ph) || isNaN(moisture) || isNaN(nitrogen)) {
+        resultDiv.innerHTML = "<strong>Please fill all the fields correctly.</strong>";
+        return;
       }
 
-      document.getElementById('result').innerText = recommendation;
-      document.getElementById('result').style.display = 'block';
-    });
+      let soilType = "";
+      let suitablePlants = [];
+
+      // Determine soil type based on pH
+      if (ph < 5.5) {
+        soilType = "Acidic Soil";
+        suitablePlants = ["Blueberries", "Potatoes", "Azaleas"];
+      } else if (ph >= 5.5 && ph <= 7.5) {
+        soilType = "Neutral Soil";
+        suitablePlants = ["Tomatoes", "Carrots", "Wheat", "Corn"];
+      } else {
+        soilType = "Alkaline Soil";
+        suitablePlants = ["Cabbage", "Lavender", "Spinach"];
+      }
+
+      // Additional suggestion based on moisture
+      if (moisture < 30) {
+        suitablePlants.push("Cactus", "Succulents");
+      } else if (moisture > 70) {
+        suitablePlants.push("Rice", "Watercress");
+      }
+
+      // Add nitrogen suggestion
+      if (nitrogen < 20) {
+        suitablePlants.push("Legumes (to improve nitrogen)", "Peas");
+      }
+
+      resultDiv.innerHTML = `
+        <h3>🧪 Soil Analysis Result</h3>
+        <p><strong>Soil Type:</strong> ${soilType}</p>
+        <p><strong>Suggested Plants & Trees:</strong> ${suitablePlants.join(', ')}</p>
+      `;
+    }
   </script>
 
 </body>
