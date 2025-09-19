@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoilSense - Know Your Soil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    h1 {
+      color: #2e7d32;
+    }
+
+    .section {
+      margin: 40px 0;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .soil-type {
+      margin-bottom: 20px;
+    }
+
+    .soil-type h2 {
+      color: #4caf50;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌱 SoilSense</h1>
+    <p>Helping farmers and gardeners understand their soil better</p>
+  </header>
+
+  <section class="section">
+    <h2>🧪 Types of Soil</h2>
+
+    <div class="soil-type">
+      <h3>1. Loamy Soil</h3>
+      <p>Rich in nutrients and holds moisture well. Best for most crops.</p>
+      <strong>Ideal Plants:</strong>
+      <ul>
+        <li>Wheat</li>
+        <li>Sugarcane</li>
+        <li>Vegetables (Tomato, Carrot)</li>
+      </ul>
+    </div>
+
+    <div class="soil-type">
+      <h3>2. Sandy Soil</h3>
+      <p>Drains quickly and is low in nutrients.</p>
+      <strong>Ideal Plants:</strong>
+      <ul>
+        <li>Watermelon</li>
+        <li>Peanuts</li>
+        <li>Potatoes</li>
+      </ul>
+    </div>
+
+    <div class="soil-type">
+      <h3>3. Clayey Soil</h3>
+      <p>Retains water, dense and sticky.</p>
+      <strong>Ideal Plants:</strong>
+      <ul>
+        <li>Rice</li>
+        <li>Broccoli</li>
+        <li>Sunflower</li>
+      </ul>
+    </div>
+
+    <!-- Add more soil types -->
+  </section>
+
+  <section class="section">
+    <h2>🌾 Tips for Healthy Soil</h2>
+    <ul>
+      <li>Rotate crops to maintain soil nutrients</li>
+      <li>Use compost and organic fertilizers</li>
+      <li>Test your soil pH regularly</li>
+      <li>Mulch to retain moisture</li>
+    </ul>
+  </section>
+
+</body>
+</html>
